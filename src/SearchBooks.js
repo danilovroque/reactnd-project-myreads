@@ -8,7 +8,9 @@ class SearchBooks extends Component {
         return (  
             <div className="search-books-results">
                 <ol className="books-grid">
-                    {!!books && (books.map(book => (
+                    {books.length <= 0 ? (
+                        <p>Nenhum resultado encontrado</p> 
+                    ) : (books.map(book => (
                         <li key={book.id}>
                             <Book book={book} />
                         </li>

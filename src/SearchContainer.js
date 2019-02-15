@@ -25,10 +25,15 @@ class SearchContainer extends Component {
     searchBooks = (value) => {
         BooksAPI.search(value)
             .then((response) => {
-                if (this.isComponentMonted){
-                    this.setState(() => ({
-                        books: response
-                    }));
+                if (this.state.textValue !== '') {
+
+                    if (response.error) {
+                        this.clearBooks();
+                    } else {
+                        this.setState(() => ({
+                            books: response
+                        }));
+                    }
                 } else {
                     this.clearBooks();
                 }
@@ -51,12 +56,7 @@ class SearchContainer extends Component {
             this.clearBooks();
     }
 
-    componentWillUpdate() {
-        this.state.textValue === '' ? this.isComponentMonted = false : this.isComponentMonted = true;
-    }
-
     render () {
-        console.log('books', this.state.books);
         return (
             <div className="search-books">
                 <div className="search-books-bar">
@@ -67,6 +67,7 @@ class SearchContainer extends Component {
                             value={this.state.textValue} onChange={(event) => this.handleTextChange(event)}/>
                     </div>
                 </div>
+
                 <SearchBooks books={this.state.books} />    
           </div>
         )
