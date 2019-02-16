@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Book from './Book.js';
 
 const Category = () => {
@@ -19,6 +20,12 @@ const Category = () => {
             </div>
         </div>
     )
+}
+
+Category.propTypes = {
+    books: PropTypes.array.isRequired,
+    onShelfChange: PropTypes.func.isRequired,
+    categoryName: PropTypes.string.isRequired
 }
 
 export default Category;
