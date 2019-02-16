@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Book from './Book.js';
 
-const Category = () => {
+const Category = (props) => {
     const { books, onShelfChange, categoryName } = props;
     return (
         <div className="bookshelf">

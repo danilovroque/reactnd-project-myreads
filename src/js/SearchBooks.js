@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Book from './Book.js';
 
-const SearchBooks = () => {
+const SearchBooks = (props) => {
 
     const { books, onShelfChange } = this.props;
     return (  

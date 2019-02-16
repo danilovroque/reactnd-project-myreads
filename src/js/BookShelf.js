@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Category from './Category.js';
-import PropTypes from 'prop-types';
 
 const categories = [
     {
@@ -18,7 +18,7 @@ const categories = [
     }
 ];
 
-const BookShelf = () => {
+const BookShelf = (props) => {
     const { books, onShelfChange } = props; 
     
     return (
