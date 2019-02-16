@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import * as BooksAPI from './utils/BooksAPI.js';
+import * as BooksAPI from '../utils/BooksAPI.js';
 import SearchBooks from './SearchBooks.js';
 
 class SearchContainer extends Component {
@@ -33,7 +33,7 @@ class SearchContainer extends Component {
                         this.setState(() => ({
                             books: response.map(r => {
                                 const tmpBook = this.props.books.find(b => r.id === b.id);
-                                return !tmpBook ? r : tmpBook;
+                                return !tmpBook ? ({...r, shelf: 'none'}) : tmpBook;
                             })
                         }));
                     }
