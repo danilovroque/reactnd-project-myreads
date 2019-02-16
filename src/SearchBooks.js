@@ -4,7 +4,7 @@ import Book from './Book.js';
 class SearchBooks extends Component {
 
     render() {
-        const { books } = this.props;
+        const { books, onShelfChange } = this.props;
         return (  
             <div className="search-books-results">
                 <ol className="books-grid">
@@ -12,7 +12,7 @@ class SearchBooks extends Component {
                         <p>Nenhum resultado encontrado</p> 
                     ) : (books.map(book => (
                         <li key={book.id}>
-                            <Book book={book} />
+                            <Book book={book} onShelfChange={onShelfChange} />
                         </li>
                     )))}
                 </ol>

@@ -31,7 +31,10 @@ class SearchContainer extends Component {
                         this.clearBooks();
                     } else {
                         this.setState(() => ({
-                            books: response
+                            books: response.map(r => {
+                                const tmpBook = this.props.books.find(b => r.id === b.id);
+                                return !tmpBook ? r : tmpBook;
+                            })
                         }));
                     }
                 } else {
@@ -68,7 +71,7 @@ class SearchContainer extends Component {
                     </div>
                 </div>
 
-                <SearchBooks books={this.state.books} />    
+                <SearchBooks books={this.state.books} onShelfChange={this.props.onShelfChange} />    
           </div>
         )
     }

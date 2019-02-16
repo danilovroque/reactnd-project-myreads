@@ -2,9 +2,8 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import SearchContainer from './SearchContainer.js';
-import ListCategories from './ListCategories.js';
+import BookShelf from './BookShelf.js';
 import * as BooksAPI from './utils/BooksAPI.js';
-
 
 class BooksApp extends React.Component {
   state = {
@@ -20,15 +19,42 @@ class BooksApp extends React.Component {
       });
   }
 
+  shelfChange = (book, newShelf) => {
+    
+    const tmpBook = this.state.books.find(b => b.id === book.id);
+
+    BooksAPI.update(book, newShelf)
+      .then((response) => {
+        if (!response.error){
+
+          if (!tmpBook) {
+            book.shelf = newShelf;
+            this.setState((current) => ({
+              books: current.books.concat(book)
+            }));
+          } else {
+            this.setState((current) => ({
+              books: current.books.map(b => ( 
+                    b.id === book.id ? ({...b, shelf: newShelf}) : b
+              ))
+            }));
+          }
+        }
+      });
+  }
+
   render() {
     return (
       <div className="app">
         <Route exact path='/' render={() =>(
-            <ListCategories books={this.state.books} />
+            <BookShelf books={this.state.books} onShelfChange={this.shelfChange} />
           )} 
         />
 
-        <Route path='/search' component={SearchContainer} />
+        <Route path='/search' render={() => (
+            <SearchContainer books={this.state.books} onShelfChange={this.shelfChange} />
+          )} 
+        />
       </div>
     )
   }

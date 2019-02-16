@@ -17,9 +17,9 @@ const categories = [
     }
 ];
 
-class ListCategories extends Component {
+class BookShelf extends Component {
     render () {
-        const { books } = this.props; 
+        const { books, onShelfChange } = this.props; 
         
         return (
             <div className="list-books">
@@ -29,7 +29,8 @@ class ListCategories extends Component {
                     </div>
                     <div>
                         {categories.map((category) => (
-                            <Category categoryName={category.name} key={category.id} books={
+                            <Category categoryName={category.name} key={category.id}
+                                onShelfChange={onShelfChange} books={
                                 books.filter(b => b.shelf === category.id)
                             } />
                         ))}
@@ -43,4 +44,4 @@ class ListCategories extends Component {
     }
 }
 
-export default ListCategories;
+export default BookShelf;
