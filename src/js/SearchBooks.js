@@ -4,7 +4,7 @@ import Book from './Book.js';
 
 const SearchBooks = (props) => {
 
-    const { books, onShelfChange } = this.props;
+    const { books, onShelfChange } = props;
     return (  
         <div className="search-books-results">
             <ol className="books-grid">
