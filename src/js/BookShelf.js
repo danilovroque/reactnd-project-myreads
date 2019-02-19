@@ -19,7 +19,7 @@ const categories = [
 ];
 
 const BookShelf = (props) => {
-    const { books, onShelfChange } = props; 
+    const { books, onShelfChange } = props;
     
     return (
         <div className="list-books">

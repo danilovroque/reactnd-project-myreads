@@ -19,8 +19,12 @@ class BooksApp extends React.Component {
       });
   }
 
+  /**
+   * @description Função utilizada para atualizar o atributo shelf de um livro
+   * @param {object} book - Livro a ser atualizado
+   * @param {string} newShelf - Nova estante onde o livro estará localizado
+   */
   shelfChange = (book, newShelf) => {
-    
     const tmpBook = this.state.books.find(b => b.id === book.id);
 
     BooksAPI.update(book, newShelf)
@@ -53,11 +57,11 @@ class BooksApp extends React.Component {
 
         <Route path='/search' render={() => (
             <SearchContainer books={this.state.books} onShelfChange={this.shelfChange} />
-          )} 
+          )}
         />
       </div>
     )
   }
 }
 
-export default BooksApp
+export default BooksApp;

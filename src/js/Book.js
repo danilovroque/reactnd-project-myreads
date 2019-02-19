@@ -8,6 +8,11 @@ class Book extends Component {
         onShelfChange: PropTypes.func.isRequired
     }
 
+    /**
+     * @description Função utilizada para chamar o método onShelfChange localizado nas props
+     * @param {object} book - Livro a ser atualizado
+     * @param {string} newShelf - Nova estante onde o livro estará localizado
+     */
     handleShelfChange = (book, newShelf) => {
         this.props.onShelfChange(book, newShelf);
     }

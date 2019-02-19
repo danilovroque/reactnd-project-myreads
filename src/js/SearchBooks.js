@@ -5,11 +5,11 @@ import Book from './Book.js';
 const SearchBooks = (props) => {
 
     const { books, onShelfChange } = props;
-    return (  
+    return (
         <div className="search-books-results">
             <ol className="books-grid">
                 {books.length <= 0 ? (
-                    <p>Nenhum resultado encontrado</p> 
+                    <p>Nenhum resultado encontrado</p>
                 ) : (books.map(book => (
                     <li key={book.id}>
                         <Book book={book} onShelfChange={onShelfChange} />

@@ -22,12 +22,19 @@ class SearchContainer extends Component {
         books: []
     }
 
+    /**
+     * @description Função utilizada para limpar o estado 'books'
+     */
     clearBooks = () => {
         this.setState(() => ({
             books: []
         }));
     }
 
+    /**
+     * @description Função utilizada para fazer a busca por novos livros. Essa função utiliza a API BooksAPI.
+     * @param {string} value - Texto a ser considerado na busca
+     */
     searchBooks = (value) => {
         BooksAPI.search(value)
             .then((response) => {
@@ -50,14 +57,16 @@ class SearchContainer extends Component {
             });           
     }
 
-    handleTextChange (event) {
+    /**
+     * @description Função que lida com a alteração no texto no input de busca.
+     * @param {event} event - Evento que chama a função.
+     */
+    handleTextChange = (event) => {
         const value = event.target.value;
 
         this.setState(() => ({
             textValue: value
         }));
-
-        
 
         if (value)
             this.searchBooks(value);
@@ -77,7 +86,7 @@ class SearchContainer extends Component {
                     </div>
                 </div>
 
-                <SearchBooks books={this.state.books} onShelfChange={this.props.onShelfChange} />    
+                <SearchBooks books={this.state.books} onShelfChange={this.props.onShelfChange} />
           </div>
         )
     }
