@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Debounce } from 'react-throttle';
 import * as BooksAPI from '../utils/BooksAPI.js';
 import SearchBooks from './SearchBooks.js';
 
@@ -21,6 +22,8 @@ class SearchContainer extends Component {
         textValue: '',
         books: []
     }
+
+    
 
     /**
      * @description Função utilizada para limpar o estado 'books'
@@ -63,7 +66,7 @@ class SearchContainer extends Component {
      */
     handleTextChange = (event) => {
         const value = event.target.value;
-
+        
         this.setState(() => ({
             textValue: value
         }));
@@ -81,8 +84,10 @@ class SearchContainer extends Component {
                 
                 <Link to='/' className='close-search'>Close</Link>
                     <div className="search-books-input-wrapper">
-                        <input type="text" placeholder="Search by title or author" 
-                            value={this.state.textValue} onChange={(event) => this.handleTextChange(event)}/>
+                        <Debounce time='1' handler='onChange'>
+                            <input type="text" placeholder="Search by title or author" 
+                                onChange={(event) => this.handleTextChange(event)}/>
+                        </Debounce>
                     </div>
                 </div>
 
